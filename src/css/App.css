@@ -1,0 +1,30 @@
+@import 'font.css';
+@import 'buttons.css';
+@import 'welcome-message.css';
+@import 'shelft-bag-wrapper.css';
+@import 'shelft.css';
+@import 'bag.css';
+@import 'book-image-container.css';
+
+*,*::before, *::after{
+    font-family: Rubik, sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color:#f6f6f6;
+}
+
+html {
+    font-size: 18px;
+}
+
+.mr-1 {
+    margin-right: 5px;
+}
+
+.topic {
+    font-weight: normal;
+    font-size: 24px;
+}

@@ -1,0 +1,13 @@
+.welcome-message__container {
+text-align: center;
+color: #2f2f2f;
+}
+
+.welcome-message__topic {
+font-size: 2rem;
+
+}
+
+.welcome-message__tip{
+    font-weight: normal;
+}
