@@ -1,0 +1,24 @@
+.search-page__container {
+    
+    justify-self: center;
+    background-color:white;
+}
+
+.search-page__close-btn-container {
+   text-align: end;
+   
+}
+
+.search-book-list__grid {
+    display: grid;
+    grid-template-columns: repeat(3 ,auto);
+    justify-content: center;
+}
+
+.search-book__container {
+    padding: 40px;
+}
+
+
+
+

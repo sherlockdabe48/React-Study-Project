@@ -1,0 +1,14 @@
+.shelf-container {
+    background-color: white;
+}
+
+.shelf-book-list__grid {
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+}
+
+@media (max-width: 1080px) {
+    .shelf-book-list__grid {
+        grid-template-columns: repeat(2,auto);
+    }
+}

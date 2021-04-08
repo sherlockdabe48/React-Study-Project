@@ -1,10 +1,12 @@
 @import 'font.css';
 @import 'buttons.css';
 @import 'welcome-message.css';
-@import 'shelft-bag-wrapper.css';
-@import 'shelft.css';
+@import 'shelf-bag-wrapper.css';
+@import 'shelf.css';
 @import 'bag.css';
-@import 'book-image-container.css';
+@import 'book-in-shelf.css';
+@import 'book-in-bag.css';
+@import 'search-page.css';
 
 *,*::before, *::after{
     font-family: Rubik, sans-serif;
@@ -27,4 +29,12 @@ html {
 .topic {
     font-weight: normal;
     font-size: 24px;
+}
+
+.ft-14 {
+    font-size: 14px;
+}
+
+.mt-2 {
+    margin-top: 30px;
 }

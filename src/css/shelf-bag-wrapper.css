@@ -1,0 +1,10 @@
+.shelf-bag-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+@media (max-width:900px ) {
+.shelf-bag-wrapper {
+    display: grid;
+}
+}

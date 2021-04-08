@@ -1,9 +1,0 @@
-.shelft-container {
-    background-color: white;
-}
-
-.shelft-book-list__grid {
-    display: grid;
-    grid-template-columns: repeat(3,auto);
-}
-
