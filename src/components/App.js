@@ -6,7 +6,7 @@ import ShelfBagWrapper from "./ShelfBagWrapper.js"
 import WelcomeMessage from "./WelcomeMessage.js"
 import "../css/app.css"
 // const SEARCH_URI = "https://www.googleapis.com/books/v1/volumes?q="
-// const API_KEY = "AIzaSyCcEt_4qZ13QVI2F1h0sphoJ_eK_JCgcmY"
+
 
 function App() {
   const [bagBooks, setBagBooks] = useState(sampleBagBooks)
