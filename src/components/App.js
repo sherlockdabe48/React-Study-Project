@@ -5,7 +5,7 @@ import SearchPage from "./SearchPage.js"
 import ShelfBagWrapper from "./ShelfBagWrapper.js"
 import WelcomeMessage from "./WelcomeMessage.js"
 import "../css/app.css"
-import { v4 as uuidv4 } from "uuid"
+// import { v4 as uuidv4 } from "uuid"
 // const SEARCH_URI = "https://www.googleapis.com/books/v1/volumes?q="
 
 export const bookBagContext = React.createContext()
