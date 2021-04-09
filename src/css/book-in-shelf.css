@@ -1,8 +1,28 @@
 .book-in-shelf__container {
-    width: 130px;
-    height: 190px;
- 
-
-    padding: 40px;
+    text-align: center;
+    padding-top: 10px;
 }
 
+.book-image-in-shelf {
+    min-width: 150px;
+    height: 224px;
+    border-radius: 5px;
+}
+
+.book-in-shelf__title{
+    margin-top: 5px;
+}
+
+.book-in-shelf__add-button-container {
+    display: inline-block;
+    position: relative;
+    max-width: 150px;
+    max-height: 224px;
+    text-align: end;
+}
+
+.book-in-shelf__add-button{
+   position: absolute;
+   bottom: 5px;
+   right: 5px;
+}
