@@ -19,8 +19,19 @@ color: white;
 background-color: hsl(209, 98%, 60%) ;
 color: white;
 }
+.btn--secondary {
+background-color: hsl(51, 95%, 63%) ;
+color: white;
+}
 .btn--primary:hover {
 background-color: hsl(209, 98%, 45%) ;
+}
+.btn--normal {
+    background-color: hsl(0, 0%, 57%) ;
+    color: white;
+}
+.btn--normal:hover {
+    background-color: hsl(0, 0%, 35%) ;
 }
 
 .btn--optional {
@@ -75,6 +86,11 @@ background-color: hsl(0, 100%, 35%);
     vertical-align: middle;
     text-decoration: none;
 }
+
+.btn--small {
+   transform: scale(0.5, 0.5);
+}
+
 
 
 

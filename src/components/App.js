@@ -5,29 +5,69 @@ import SearchPage from "./SearchPage.js"
 import ShelfBagWrapper from "./ShelfBagWrapper.js"
 import WelcomeMessage from "./WelcomeMessage.js"
 import "../css/app.css"
+import MobileSearchBox from "./MobileSearchBox.js"
+
+const BAG_BOOKS_LOCAL_STORAGE_KEY = "myBookBag.bagBooks"
+const SHELF_BOOKS_LOCAL_STORAGE_KEY = "myBookBag.shelfBooks"
 // import { v4 as uuidv4 } from "uuid"
 // const SEARCH_URI = "https://www.googleapis.com/books/v1/volumes?q="
 
 export const bookBagContext = React.createContext()
+export const toggleClassContext = React.createContext()
 
 function App() {
   const [bagBooks, setBagBooks] = useState(sampleBagBooks)
   const [shelfBooks, setShelfBooks] = useState(sampleShelfBooks)
   const [selectedBookId, setSelectedBookId] = useState()
-  const selectedBook = shelfBooks.find(
-    (shelfBook) => shelfBook.id === setSelectedBookId
-  )
+  const haveSomeBook = bagBooks.length > 0 || shelfBooks.length > 0
+  const [toggleClass, setToggleClass] = useState(false)
+  const [shelfHighLight, setShelfHighLight] = useState(false)
+
+  // const selectedBook = shelfBooks.find(
+  //   (shelfBook) => shelfBook.id === setSelectedBookId
+  // )
+
+  //load data
   useEffect(() => {
-    console.log(bagBooks)
-    console.log(selectedBook)
-    console.log(shelfBooks)
-  }, [bagBooks, selectedBook, shelfBooks])
+    const bagBookJson = localStorage.getItem(BAG_BOOKS_LOCAL_STORAGE_KEY)
+    if (bagBookJson != null) setBagBooks(JSON.parse(bagBookJson))
+    const shelfBookJson = localStorage.getItem(SHELF_BOOKS_LOCAL_STORAGE_KEY)
+    if (shelfBookJson != null) setShelfBooks(JSON.parse(shelfBookJson))
+  }, [])
+
+  //save data
+  useEffect(() => {
+    localStorage.setItem(BAG_BOOKS_LOCAL_STORAGE_KEY, JSON.stringify(bagBooks))
+    localStorage.setItem(
+      SHELF_BOOKS_LOCAL_STORAGE_KEY,
+      JSON.stringify(shelfBooks)
+    )
+  }, [bagBooks, shelfBooks])
 
   const bookBagContextValue = {
     handleAddToBagFromShelf,
     handleBookSelect,
     handleBookDeleteFromShelf,
     handleMoveToShelfFromBag,
+  }
+
+  const toggleClassContextValue = {
+    handleActiveShelfHighLight,
+    handleToggleClassHide,
+  }
+
+  function handleToggleClassHide(id) {
+    const editProgressBook = bagBooks.find(bagBook=>bagBook.id === id)
+    setSelectedBookId(editProgressBook.id)
+    setToggleClass(!toggleClass)
+  }
+
+
+  function handleActiveShelfHighLight() {
+    setTimeout(() => {
+      setShelfHighLight(false)
+    }, 1500)
+    setShelfHighLight(true)
   }
 
   function handleAddToBagFromShelf(id) {
@@ -58,6 +98,7 @@ function App() {
   return (
     <Router>
       <Header />
+      <MobileSearchBox />
       <Switch>
         <Route path="/search-page">
           <SearchPage />
@@ -66,7 +107,16 @@ function App() {
       <WelcomeMessage />
 
       <bookBagContext.Provider value={bookBagContextValue}>
-        <ShelfBagWrapper bagBooks={bagBooks} shelfBooks={shelfBooks} />
+        <toggleClassContext.Provider value={toggleClassContextValue}>
+          {haveSomeBook && (
+            <ShelfBagWrapper
+              bagBooks={bagBooks}
+              shelfBooks={shelfBooks}
+              toggleClass={toggleClass}
+              shelfHighLight={shelfHighLight}
+            />
+          )}
+        </toggleClassContext.Provider>
       </bookBagContext.Provider>
     </Router>
   )
@@ -80,6 +130,7 @@ const sampleBagBooks = [
     allPages: 602,
     currentPage: 364,
     imageURL: "../images/benfranklin.jpg",
+    status: "onRead",
   },
   {
     id: 2,
@@ -88,6 +139,7 @@ const sampleBagBooks = [
     allPages: 340,
     currentPage: 201,
     imageURL: "../images/hobbit.jpg",
+    status: "finish",
   },
 ]
 

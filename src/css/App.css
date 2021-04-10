@@ -7,6 +7,7 @@
 @import 'book-in-shelf.css';
 @import 'book-in-bag.css';
 @import 'search-page.css';
+@import 'mobile-search-box.css';
 
 *,*::before, *::after{
     font-family: Rubik, sans-serif;
@@ -37,4 +38,8 @@ html {
 
 .mt-2 {
     margin-top: 30px;
+}
+
+.hide {
+    display: none;
 }

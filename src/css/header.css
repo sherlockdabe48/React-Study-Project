@@ -23,3 +23,17 @@
     font-size: inherit;
 }
 
+
+@media (max-width: 660px) {
+    .header__input-search-box {
+        display: none;
+    }
+    .header__search-button {
+        display: none;
+    }
+
+    .header-container {
+        text-align: center;
+        justify-content: center;
+    }
+}

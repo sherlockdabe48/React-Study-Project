@@ -1,7 +1,19 @@
 .shelf-container {
     background-color: white;
-    
     padding: 40px;
+    transition: all 0.2s;
+    border-radius: 10px;
+}
+
+.shelf-container:hover{
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    transform: scale(1.03);
+}
+
+.shelf-container__highlight {
+    transition: all 0.2s;
+    box-shadow: 0 0 11px rgba(19, 178, 252, 0.8); 
+    
 }
 
 .shelf-book-list__grid {

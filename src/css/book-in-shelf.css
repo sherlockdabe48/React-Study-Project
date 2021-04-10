@@ -7,22 +7,45 @@
     min-width: 150px;
     height: 224px;
     border-radius: 5px;
+    transition: all 0.2s;
 }
+
+.btn--hide {
+    display: none;
+}
+
+.book-image-in-shelf:hover +.btn--hide, .btn--hide:hover{
+    display: block;
+}
+
+.book-image-in-shelf:hover{
+    opacity: 0.7;
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
+
 
 .book-in-shelf__title{
     margin-top: 5px;
 }
 
-.book-in-shelf__add-button-container {
+.book-in-shelf__buttons-container {
     display: inline-block;
     position: relative;
     max-width: 150px;
     max-height: 224px;
     text-align: end;
+ 
+
 }
 
 .book-in-shelf__add-button{
    position: absolute;
    bottom: 5px;
    right: 5px;
+}
+
+.book-in-shelf__delete-btn {
+    position: absolute;
+    top: -6px;
+    right: -6px;
 }

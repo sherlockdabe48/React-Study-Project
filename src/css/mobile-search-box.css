@@ -1,0 +1,20 @@
+.mobile__search-box-wrapper {
+    display: none;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+    
+.mobile__input-search-box{
+        padding: 10px;
+        width: 250px;
+        border-radius: 5px;
+        border: 1px solid #969696;
+        font-size: inherit;
+}
+
+@media (max-width: 660px) {
+    .mobile__search-box-wrapper {
+        display: block;
+    }
+}
