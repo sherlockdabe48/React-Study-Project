@@ -1,0 +1,46 @@
+@import 'font.css';
+@import 'buttons.css';
+@import "header.css";
+@import 'welcome-message.css';
+@import 'shelf-bag-wrapper.css';
+@import 'shelf.css';
+@import 'bag.css';
+@import 'book-in-shelf.css';
+@import 'book-in-bag.css';
+@import 'search-page.css';
+@import 'mobile-search-box.css';
+
+*,*::before, *::after{
+    font-family: Rubik, sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color:#f6f6f6;
+}
+
+html {
+    font-size: 18px;
+}
+
+.mr-1 {
+    margin-right: 5px;
+}
+
+.topic {
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.ft-14 {
+    font-size: 14px;
+}
+
+.mt-2 {
+    margin-top: 30px;
+}
+
+.hide {
+    display: none;
+}
