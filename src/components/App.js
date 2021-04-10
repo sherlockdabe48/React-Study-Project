@@ -56,9 +56,7 @@ function App() {
     handleToggleClassHide,
   }
 
-  function handleToggleClassHide(id) {
-    const editProgressBook = bagBooks.find((bagBook) => bagBook.id === id)
-    setSelectedBookId(editProgressBook.id)
+  function handleToggleClassHide() {
     setToggleClass(!toggleClass)
   }
 
