@@ -1,5 +1,4 @@
 import React from "react"
-import "../css/welcome-message.css"
 
 export default function WelcomeMessage() {
   return (

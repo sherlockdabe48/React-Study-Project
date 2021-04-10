@@ -57,11 +57,10 @@ function App() {
   }
 
   function handleToggleClassHide(id) {
-    const editProgressBook = bagBooks.find(bagBook=>bagBook.id === id)
+    const editProgressBook = bagBooks.find((bagBook) => bagBook.id === id)
     setSelectedBookId(editProgressBook.id)
     setToggleClass(!toggleClass)
   }
-
 
   function handleActiveShelfHighLight() {
     setTimeout(() => {
