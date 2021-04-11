@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router } from "react-router-dom"
 import Header from "./Header.js"
 import SearchPage from "./SearchPage.js"
 import ShelfBagWrapper from "./ShelfBagWrapper.js"
 import WelcomeMessage from "./WelcomeMessage.js"
 import "../css/app.css"
 import MobileSearchBox from "./MobileSearchBox.js"
+import { v4 as uuidv4 } from "uuid"
+import axios from "axios"
+import SearchBook from "./SearchBook.js"
 
 const BAG_BOOKS_LOCAL_STORAGE_KEY = "myBookBag.bagBooks"
 const SHELF_BOOKS_LOCAL_STORAGE_KEY = "myBookBag.shelfBooks"
-// import { v4 as uuidv4 } from "uuid"
-// const SEARCH_URI = "https://www.googleapis.com/books/v1/volumes?q="
+const SEARCH_URI = "https://www.googleapis.com/books/v1/volumes?q="
 
 export const bookBagContext = React.createContext()
 export const toggleClassContext = React.createContext()
+export const searchBookContext = React.createContext()
 
 function App() {
   const [bagBooks, setBagBooks] = useState(sampleBagBooks)
@@ -22,10 +25,50 @@ function App() {
   const haveSomeBook = bagBooks.length > 0 || shelfBooks.length > 0
   const [toggleClass, setToggleClass] = useState(false)
   const [shelfHighLight, setShelfHighLight] = useState(false)
+  const [bookData, setBookData] = useState([])
+  const [searchBooks, setSearchBooks] = useState(sampleSearchBooks)
+  const [searchInputValue, setSearchInputValue] = useState("")
 
-  // const selectedBook = shelfBooks.find(
-  //   (shelfBook) => shelfBook.id === setSelectedBookId
-  // )
+  function handleGetSearchBooksData(volume) {
+    const newSearchBook = {
+      id: uuidv4(),
+      title: volume.title,
+      author: volume.authors ? volume.authors.join(", ") : "N/A",
+      allPages: 340,
+      currentPage: 201,
+      imageURL: "../images/hobbit.jpg",
+      status: "finish",
+    }
+    setSearchBooks([...searchBooks, newSearchBook])
+  }
+
+  function handleGetSearchInputValue(inputValue) {
+    setSearchInputValue(inputValue)
+  }
+
+  function handleClearSearchInputValue() {
+    setSearchInputValue(undefined)
+  }
+
+  if (bookData != null) {
+    bookData.forEach((item) => {
+      const volume = item.volumeInfo
+      handleGetSearchBooksData(volume)
+    })
+    console.log(bookData)
+  }
+
+  useEffect(async () => {
+    const results = await axios.get(`${SEARCH_URI}${searchInputValue}`)
+    if (results != null) setBookData(results.data.items)
+    // fetchData()
+  }, [searchInputValue, bookData])
+
+  // function fetchData() {
+  //   fetch(`${SEARCH_URI}${searchInputValue}`)
+  //     .then((response) => response.json())
+  //     .then((results) => setBookData(results.items))
+  // }
 
   //load data
   useEffect(() => {
@@ -43,6 +86,11 @@ function App() {
       JSON.stringify(shelfBooks)
     )
   }, [bagBooks, shelfBooks])
+
+  const searchBookContextValue = {
+    handleGetSearchInputValue,
+    handleClearSearchInputValue,
+  }
 
   const bookBagContextValue = {
     handleAddToBagFromShelf,
@@ -94,14 +142,16 @@ function App() {
 
   return (
     <Router>
-      <Header />
-      <MobileSearchBox />
-      <Switch>
-        <Route path="/search-page">
-          <SearchPage />
-        </Route>
-      </Switch>
-      <WelcomeMessage />
+      <searchBookContext.Provider value={searchBookContextValue}>
+        <Header />
+        <MobileSearchBox />
+        {/* <Switch>
+          <Route path="/search-page"> */}
+        {searchInputValue && <SearchPage searchInputValue={searchInputValue} />}
+        {/* </Route>
+        </Switch> */}
+      </searchBookContext.Provider>
+      {!haveSomeBook && <WelcomeMessage />}
 
       <bookBagContext.Provider value={bookBagContextValue}>
         <toggleClassContext.Provider value={toggleClassContextValue}>
@@ -188,6 +238,18 @@ const sampleShelfBooks = [
     allPages: 400,
     currentPage: 10,
     imageURL: "../images/noob.jpg",
+  },
+]
+
+const sampleSearchBooks = [
+  {
+    id: uuidv4(),
+    title: "",
+    author: "",
+    allPages: 1,
+    currentPage: 1,
+    imageURL: "../images/benfranklin.jpg",
+    status: "onRead",
   },
 ]
 

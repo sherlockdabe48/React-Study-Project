@@ -7,12 +7,7 @@ export default function SearchBookList() {
         <div className="search-book-list__grid">
                <SearchBook />
                <SearchBook />
-               <SearchBook />
-               <SearchBook />
-               <SearchBook />
-               <SearchBook />
-               <SearchBook />
-               <SearchBook />
+              
             </div>
         
          
