@@ -9,6 +9,7 @@
 @import 'book-in-bag.css';
 @import 'search-page.css';
 @import 'mobile-search-box.css';
+@import 'search-book.css';
 
 *,*::before, *::after{
     font-family: Rubik, sans-serif;
@@ -18,6 +19,7 @@ body {
     padding: 0;
     margin: 0;
     background-color:#f6f6f6;
+    color: #515151;
 }
 
 html {
@@ -49,4 +51,8 @@ html {
 
 .hide {
     display: none;
+}
+
+.text-center {
+    text-align: center;
 }

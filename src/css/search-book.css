@@ -1,0 +1,22 @@
+.search-book__desciption {
+    font-size: 0.8rem;
+}
+
+.search-book__label{
+    font-size: 0.75rem;
+    margin-right: 5px;
+}
+
+.search-book__title{
+    font-size: 24px;
+    color: #2f2f2f;
+}
+
+.search-book__author{
+    font-size: 18px;
+    color: #515151;
+}
+
+.search-book__pages {
+    font-size: 0.8rem;
+}

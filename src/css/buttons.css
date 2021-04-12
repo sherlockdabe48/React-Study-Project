@@ -64,12 +64,20 @@ background-color: hsl(0, 100%, 35%);
     font-size: 14px;
     max-width: 150px;
 }
+.btn--in-search-book {
+   padding: 5px 5px ;
+    font-size: 14px;
+    max-width: 150px;
+    max-height: 40px;
+   
+}
 
 .btn--close-page {
     font-size: 1.5rem;
     padding: 2px 10px;
     background-color:#2f2f2f;
     align-items: center;
+    margin-right: 0;
 }
 
 .btn--circle {

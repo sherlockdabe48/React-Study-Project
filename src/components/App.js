@@ -26,20 +26,30 @@ function App() {
   const [toggleClass, setToggleClass] = useState(false)
   const [shelfHighLight, setShelfHighLight] = useState(false)
   const [bookData, setBookData] = useState([])
-  const [searchBooks, setSearchBooks] = useState(sampleSearchBooks)
+  const [searchBooks, setSearchBooks] = useState([])
   const [searchInputValue, setSearchInputValue] = useState("")
+  const [currentSearchPageUrl, setCurrentSearchPageUrl] = useState(
+    `${SEARCH_URI}${searchInputValue}`
+  )
+  const [loading, setLoading] = useState(true)
 
-  function handleGetSearchBooksData(volume) {
-    const newSearchBook = {
-      id: uuidv4(),
-      title: volume.title,
-      author: volume.authors ? volume.authors.join(", ") : "N/A",
-      allPages: 340,
-      currentPage: 201,
-      imageURL: "../images/hobbit.jpg",
-      status: "finish",
-    }
-    setSearchBooks([...searchBooks, newSearchBook])
+  function handleGetSearchBooksData(volumes) {
+    setSearchBooks(
+      volumes.map((volume) => {
+        return {
+          id: uuidv4(),
+          title: volume.title,
+          author: volume.authors ? volume.authors.join(", ") : "N/A",
+          allPages: volume.pageCount ? volume.pageCount : "N/A",
+          currentPage: 1,
+          imageURL: volume.imageLinks
+            ? volume.imageLinks.thumbnail
+            : "../images/mybookbag-image-cover-sample-01.jpg",
+          description: volume.description ? volume.description : false,
+          status: "onRead",
+        }
+      })
+    )
   }
 
   function handleGetSearchInputValue(inputValue) {
@@ -47,28 +57,32 @@ function App() {
   }
 
   function handleClearSearchInputValue() {
-    setSearchInputValue(undefined)
+    setSearchInputValue("")
   }
 
-  if (bookData != null) {
-    bookData.forEach((item) => {
-      const volume = item.volumeInfo
-      handleGetSearchBooksData(volume)
-    })
+  useEffect(() => {
+    console.log(searchBooks)
+  }, [searchBooks])
+
+  useEffect(() => {
     console.log(bookData)
-  }
+    handleGetSearchBooksData(bookData)
+  }, [bookData])
 
   useEffect(async () => {
-    const results = await axios.get(`${SEARCH_URI}${searchInputValue}`)
-    if (results != null) setBookData(results.data.items)
-    // fetchData()
-  }, [searchInputValue, bookData])
+    setLoading(true)
+    let cancel
+    const res = await axios.get(
+      `${SEARCH_URI}${searchInputValue}&maxResults=20`,
+      {
+        cancelToken: new axios.CancelToken((c) => (cancel = c)),
+      }
+    )
+    setLoading(false)
+    setBookData(res.data.items.map((i) => i.volumeInfo))
 
-  // function fetchData() {
-  //   fetch(`${SEARCH_URI}${searchInputValue}`)
-  //     .then((response) => response.json())
-  //     .then((results) => setBookData(results.items))
-  // }
+    return cancel()
+  }, [searchInputValue])
 
   //load data
   useEffect(() => {
@@ -147,7 +161,13 @@ function App() {
         <MobileSearchBox />
         {/* <Switch>
           <Route path="/search-page"> */}
-        {searchInputValue && <SearchPage searchInputValue={searchInputValue} />}
+        {searchInputValue && (
+          <SearchPage
+            loading={loading}
+            searchBooks={searchBooks}
+            searchInputValue={searchInputValue}
+          />
+        )}
         {/* </Route>
         </Switch> */}
       </searchBookContext.Provider>

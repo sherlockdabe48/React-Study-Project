@@ -11,14 +11,41 @@
 
 .search-book-list__grid {
     display: grid;
-    grid-template-columns: repeat(3 ,auto);
+    grid-template-columns: repeat(1 ,auto);
     justify-content: center;
 }
 
 .search-book__container {
-    padding: 40px;
+    display: flex;
+    padding: 40px 40px;
+    border-bottom: 1px solid lightgrey;
 }
 
+.search-book__book-image{
+    width: 213px;
+    height: 325px;
+    border-radius: 5px;
+}
+
+.search-book__book-detail-grid{
+    display: grid;
+    grid-template-columns: repeat(1 auto);
+    width: 100%;
+    margin-left: 20px;
+
+}
+
+.search-book__button-container-grid {
+    display: grid;
+    grid-template-columns: repeat(2 ,auto);
+    max-height: 100px;
+    
+    background-color: blue;
+}
+
+.search-book-list__pagination-button {
+    margin-top: 20px;
+}
 
 
 
