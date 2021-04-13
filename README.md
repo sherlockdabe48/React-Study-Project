@@ -7,8 +7,7 @@ This project is the web application of books management that you can mangae your
 This is the website of this project.
 https://mybookbag.netlify.app/
 
-![My Book Bag Overall]
-(https://github.com/[sherlockdabe48]/[my-book-bag]/blob/[master]/public/images/my-book-bag-overall.jpg?raw=true)
+![My Book Bag Overall](https://github.com/[sherlockdabe48]/[my-book-bag]/blob/[master]/public/images/my-book-bag-overall.jpg?raw=true)
 
 
 
