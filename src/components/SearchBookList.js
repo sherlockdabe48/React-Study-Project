@@ -1,7 +1,16 @@
-import React from "react"
+import React, { useContext } from "react"
 import SearchBook from "./SearchBook"
+import { searchBookContext } from "./App"
 
-export default function SearchBookList({ searchBooks, loading }) {
+export default function SearchBookList({
+  searchBooks,
+  loading,
+  startIndex,
+  totalSearchItems,
+}) {
+  const { handleNextPageInSearchBook, handlePrevPageInSearchBook } = useContext(
+    searchBookContext
+  )
   if (loading) return <h2 className="text-center">"Loading..."</h2>
   return (
     <>
@@ -11,9 +20,22 @@ export default function SearchBookList({ searchBooks, loading }) {
         })}
       </div>
       <div className="btn--container">
-        <button className="btn btn--normal btn--see-more search-book-list__pagination-button">
-          Next Page &gt;
-        </button>
+        {startIndex !== 0 && (
+          <button
+            className="btn btn--normal btn--see-more search-book-list__pagination-button"
+            onClick={() => handlePrevPageInSearchBook()}
+          >
+            &lt; Prev Page
+          </button>
+        )}
+        {totalSearchItems > 20 && (
+          <button
+            className="btn btn--normal btn--see-more search-book-list__pagination-button"
+            onClick={() => handleNextPageInSearchBook()}
+          >
+            Next Page &gt;
+          </button>
+        )}
       </div>
     </>
   )

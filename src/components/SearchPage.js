@@ -2,7 +2,13 @@ import React, { useContext } from "react"
 import SearchBookList from "./SearchBookList"
 import { searchBookContext } from "./App"
 
-export default function SearchPage({ searchInputValue, searchBooks, loading }) {
+export default function SearchPage({
+  searchInputValue,
+  searchBooks,
+  loading,
+  startIndex,
+  totalSearchItems,
+}) {
   const { handleClearSearchInputValue } = useContext(searchBookContext)
 
   return (
@@ -20,16 +26,23 @@ export default function SearchPage({ searchInputValue, searchBooks, loading }) {
               &times;
             </button>
           </div>
-          <SearchBookList loading={loading} searchBooks={searchBooks} />
+          <SearchBookList
+            loading={loading}
+            searchBooks={searchBooks}
+            startIndex={startIndex}
+            totalSearchItems={totalSearchItems}
+          />
 
-          <div className="search-page__close-btn-container ">
-            <button
-              className="btn btn--close-page"
-              onClick={handleClearSearchInputValue}
-            >
-              &times;
-            </button>
-          </div>
+          {totalSearchItems > 20 && (
+            <div className="search-page__close-btn-container ">
+              <button
+                className="btn btn--close-page"
+                onClick={handleClearSearchInputValue}
+              >
+                &times;
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>

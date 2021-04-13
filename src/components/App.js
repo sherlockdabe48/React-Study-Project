@@ -6,7 +6,6 @@ import ShelfBagWrapper from "./ShelfBagWrapper.js"
 import WelcomeMessage from "./WelcomeMessage.js"
 import "../css/app.css"
 import MobileSearchBox from "./MobileSearchBox.js"
-import { v4 as uuidv4 } from "uuid"
 import axios from "axios"
 
 const BAG_BOOKS_LOCAL_STORAGE_KEY = "myBookBag.bagBooks"
@@ -27,24 +26,37 @@ function App() {
   const [bookData, setBookData] = useState([])
   const [searchBooks, setSearchBooks] = useState([])
   const [searchInputValue, setSearchInputValue] = useState("")
-  // const [currentSearchPageUrl, setCurrentSearchPageUrl] = useState(
-  //   `${SEARCH_URI}${searchInputValue}`
-  // )
+  const [startIndex, setStartIndex] = useState(0)
+  const [totalSearchItems, setTotalSearchItems] = useState(0)
+
   const [loading, setLoading] = useState(true)
+
+  function handleNextPageInSearchBook() {
+    setStartIndex((prevStartIndex) => prevStartIndex + 21)
+  }
+  function handlePrevPageInSearchBook() {
+    setStartIndex((prevStartIndex) => prevStartIndex - 21)
+  }
 
   function handleGetSearchBooksData(volumes) {
     setSearchBooks(
       volumes.map((volume) => {
         return {
-          id: uuidv4(),
-          title: volume.title,
-          author: volume.authors ? volume.authors.join(", ") : "N/A",
-          allPages: volume.pageCount ? volume.pageCount : "N/A",
+          id: volume.id,
+          title: volume.volumeInfo.title,
+          author: volume.volumeInfo.authors
+            ? volume.volumeInfo.authors.join(", ")
+            : "N/A",
+          allPages: volume.volumeInfo.pageCount
+            ? volume.volumeInfo.pageCount
+            : "N/A",
           currentPage: 1,
-          imageURL: volume.imageLinks
-            ? volume.imageLinks.thumbnail
+          imageURL: volume.volumeInfo.imageLinks
+            ? volume.volumeInfo.imageLinks.thumbnail
             : "../images/mybookbag-image-cover-sample-01.jpg",
-          description: volume.description ? volume.description : false,
+          description: volume.volumeInfo.description
+            ? volume.volumeInfo.description
+            : false,
           status: "onRead",
         }
       })
@@ -72,16 +84,21 @@ function App() {
     setLoading(true)
     let cancel
     axios
-      .get(`${SEARCH_URI}${searchInputValue}&maxResults=20`, {
-        cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      })
+      .get(
+        `${SEARCH_URI}${searchInputValue}&printType=books&startIndex=${startIndex}&maxResults=20`,
+        {
+          cancelToken: new axios.CancelToken((c) => (cancel = c)),
+        }
+      )
       .then((res) => {
         setLoading(false)
-        setBookData(res.data.items.map((i) => i.volumeInfo))
+        if (!res.data.items) return
+        setTotalSearchItems(res.data.totalItems)
+        setBookData(res.data.items.map((i) => i))
       })
 
     return () => cancel()
-  }, [searchInputValue])
+  }, [searchInputValue, startIndex])
 
   //load data
   useEffect(() => {
@@ -103,6 +120,8 @@ function App() {
   const searchBookContextValue = {
     handleGetSearchInputValue,
     handleClearSearchInputValue,
+    handleNextPageInSearchBook,
+    handlePrevPageInSearchBook,
   }
 
   const bookBagContextValue = {
@@ -165,6 +184,8 @@ function App() {
             loading={loading}
             searchBooks={searchBooks}
             searchInputValue={searchInputValue}
+            startIndex={startIndex}
+            totalSearchItems={totalSearchItems}
           />
         )}
         {/* </Route>
