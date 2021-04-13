@@ -8,7 +8,6 @@ import "../css/app.css"
 import MobileSearchBox from "./MobileSearchBox.js"
 import { v4 as uuidv4 } from "uuid"
 import axios from "axios"
-import SearchBook from "./SearchBook.js"
 
 const BAG_BOOKS_LOCAL_STORAGE_KEY = "myBookBag.bagBooks"
 const SHELF_BOOKS_LOCAL_STORAGE_KEY = "myBookBag.shelfBooks"
@@ -28,9 +27,9 @@ function App() {
   const [bookData, setBookData] = useState([])
   const [searchBooks, setSearchBooks] = useState([])
   const [searchInputValue, setSearchInputValue] = useState("")
-  const [currentSearchPageUrl, setCurrentSearchPageUrl] = useState(
-    `${SEARCH_URI}${searchInputValue}`
-  )
+  // const [currentSearchPageUrl, setCurrentSearchPageUrl] = useState(
+  //   `${SEARCH_URI}${searchInputValue}`
+  // )
   const [loading, setLoading] = useState(true)
 
   function handleGetSearchBooksData(volumes) {
@@ -258,18 +257,6 @@ const sampleShelfBooks = [
     allPages: 400,
     currentPage: 10,
     imageURL: "../images/noob.jpg",
-  },
-]
-
-const sampleSearchBooks = [
-  {
-    id: uuidv4(),
-    title: "",
-    author: "",
-    allPages: 1,
-    currentPage: 1,
-    imageURL: "../images/benfranklin.jpg",
-    status: "onRead",
   },
 ]
 

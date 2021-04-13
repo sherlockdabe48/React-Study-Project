@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react"
 import { searchBookContext } from "./App"
-import { Link } from "react-router-dom"
 
 export default function Header() {
   const { handleGetSearchInputValue } = useContext(searchBookContext)

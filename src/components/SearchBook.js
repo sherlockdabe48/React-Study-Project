@@ -1,7 +1,7 @@
 import React from "react"
 
 export default function SearchBook(props) {
-  const { id, title, author, description, allPages, imageURL } = props
+  const { title, author, description, allPages, imageURL } = props
 
   return (
     <>
