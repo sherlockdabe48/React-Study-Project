@@ -68,19 +68,19 @@ function App() {
     handleGetSearchBooksData(bookData)
   }, [bookData])
 
-  useEffect(async () => {
+  useEffect(() => {
     setLoading(true)
     let cancel
-    const res = await axios.get(
-      `${SEARCH_URI}${searchInputValue}&maxResults=20`,
-      {
+    axios
+      .get(`${SEARCH_URI}${searchInputValue}&maxResults=20`, {
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      }
-    )
-    setLoading(false)
-    setBookData(res.data.items.map((i) => i.volumeInfo))
+      })
+      .then((res) => {
+        setLoading(false)
+        setBookData(res.data.items.map((i) => i.volumeInfo))
+      })
 
-    return cancel()
+    return () => cancel()
   }, [searchInputValue])
 
   //load data
