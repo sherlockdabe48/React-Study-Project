@@ -1,19 +1,33 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { useContext, useState } from "react"
+import { searchBookContext } from "./App"
 
 export default function MobileSearchBox() {
+  const { handleGetSearchInputValue } = useContext(searchBookContext)
+  const [inputValue, setInputValue] = useState("")
+  function handleChange(e) {
+    setInputValue(e.target.value)
+  }
+
+  function handleSubmit(e) {
+    handleGetSearchInputValue(inputValue)
+    e.preventDefault()
+  }
   return (
     <div className="mobile__search-box-wrapper">
-      <input
-        className="mobile__input-search-box mr-1"
-        type="text"
-        placeholder="Find other book..."
-      />
-      <Link to="/search-page">
-        <button className="btn btn--primary mobile__search-button">
-          Search
-        </button>
-      </Link>
+      <form onSubmit={handleSubmit}>
+        <input
+          className="mobile__input-search-box mr-1"
+          type="text"
+          placeholder="Find other book..."
+          value={inputValue}
+          onChange={handleChange}
+        />
+        <input
+          type="submit"
+          value="Search"
+          className="btn btn--primary mobile__search-button"
+        />
+      </form>
     </div>
   )
 }
