@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { BrowserRouter as Router } from "react-router-dom"
 import Header from "./Header.js"
 import SearchPage from "./SearchPage.js"
@@ -30,6 +30,7 @@ function App() {
   const [totalSearchItems, setTotalSearchItems] = useState(0)
 
   const [loading, setLoading] = useState(true)
+  const inputRef = useRef([])
 
   function handleNextPageInSearchBook() {
     setStartIndex((prevStartIndex) => prevStartIndex + 21)
@@ -184,8 +185,8 @@ function App() {
   return (
     <Router>
       <searchBookContext.Provider value={searchBookContextValue}>
-        <Header />
-        <MobileSearchBox />
+        <Header inputRef={inputRef} />
+        <MobileSearchBox inputRef={inputRef} />
         {/* <Switch>
           <Route path="/search-page"> */}
         {searchInputValue && (
@@ -211,6 +212,7 @@ function App() {
               shelfBooks={shelfBooks}
               toggleClass={toggleClass}
               shelfHighLight={shelfHighLight}
+              inputRef={inputRef}
             />
           )}
         </toggleClassContext.Provider>

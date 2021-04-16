@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { searchBookContext } from "./App"
 
-export default function MobileSearchBox() {
+export default function MobileSearchBox({ inputRef }) {
   const { handleGetSearchInputValue } = useContext(searchBookContext)
   const [inputValue, setInputValue] = useState("")
   function handleChange(e) {
@@ -12,6 +12,11 @@ export default function MobileSearchBox() {
     handleGetSearchInputValue(inputValue)
     e.preventDefault()
   }
+
+  function focus() {
+    inputRef.current[1].focus()
+  }
+
   return (
     <div className="mobile__search-box-wrapper">
       <form onSubmit={handleSubmit}>
@@ -21,11 +26,13 @@ export default function MobileSearchBox() {
           placeholder="Find other book..."
           value={inputValue}
           onChange={handleChange}
+          ref={(el) => (inputRef.current[1] = el)}
         />
         <input
           type="submit"
           value="Search"
           className="btn btn--primary mobile__search-button"
+          onClick={focus}
         />
       </form>
     </div>

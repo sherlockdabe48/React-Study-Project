@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { searchBookContext } from "./App"
 
-export default function Header() {
+export default function Header({ inputRef }) {
   const { handleGetSearchInputValue } = useContext(searchBookContext)
   const [inputValue, setInputValue] = useState("")
 
@@ -14,6 +14,9 @@ export default function Header() {
     e.preventDefault()
   }
 
+  function focus() {
+    inputRef.current[0].focus()
+  }
 
   return (
     <div className="header-container">
@@ -24,6 +27,7 @@ export default function Header() {
             className="header__input-search-box mr-1"
             type="text"
             placeholder="Find other book..."
+            ref={(el) => (inputRef.current[0] = el)}
             value={inputValue}
             onChange={handleChange}
           />
@@ -31,6 +35,7 @@ export default function Header() {
             type="submit"
             value="Search"
             className="btn btn--primary header__search-button"
+            onClick={focus}
           />
         </form>
       </div>
