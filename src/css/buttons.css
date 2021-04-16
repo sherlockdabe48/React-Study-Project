@@ -8,6 +8,8 @@ border-radius: 5px;
 padding: 10px 20px;
 cursor: pointer;
 color: white;
+transition: all 0.2s;
+
 }
 
 .btn--container {
