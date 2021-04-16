@@ -17,8 +17,8 @@ export const toggleClassContext = React.createContext()
 export const searchBookContext = React.createContext()
 
 function App() {
-  const [bagBooks, setBagBooks] = useState(sampleBagBooks)
-  const [shelfBooks, setShelfBooks] = useState(sampleShelfBooks)
+  const [bagBooks, setBagBooks] = useState([])
+  const [shelfBooks, setShelfBooks] = useState([])
   const [selectedBookId, setSelectedBookId] = useState()
   const haveSomeBook = bagBooks.length > 0 || shelfBooks.length > 0
   const [toggleClass, setToggleClass] = useState(false)
