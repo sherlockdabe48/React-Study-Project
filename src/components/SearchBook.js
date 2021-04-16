@@ -63,9 +63,13 @@ export default function SearchBook(props) {
               </button>
             )}
 
-            <button className="btn btn--normal btn--in-search-book">
-              See in Shelf
-            </button>
+            {isAlreadyAdded && (
+              <a href="#in-my-shelf">
+                <button className="btn btn--normal btn--in-search-book">
+                  See in Shelf
+                </button>
+              </a>
+            )}
           </div>
         </div>
       </div>
