@@ -1,13 +1,26 @@
 .welcome-message__container {
 text-align: center;
 color: #2f2f2f;
+justify-content: center;
+align-items: center;
+height: 500px;
+margin-top: 100px;
 }
 
 .welcome-message__topic {
-font-size: 2rem;
-
+font-size: 1.75rem;
 }
 
 .welcome-message__tip{
+   
     font-weight: normal;
+    width: 500px;
+    background-color: brown;
+}
+
+.welcome-message__tip-wrapper {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
 }
