@@ -7,6 +7,7 @@ export default function SearchBookList({
   loading,
   startIndex,
   totalSearchItems,
+  shelfBooks
 }) {
   const { handleNextPageInSearchBook, handlePrevPageInSearchBook } = useContext(
     searchBookContext
@@ -16,7 +17,8 @@ export default function SearchBookList({
     <>
       <div className="search-book-list__grid">
         {searchBooks.map((searchBook) => {
-          return <SearchBook key={searchBook.id} {...searchBook} />
+          return <SearchBook key={searchBook.id} {...searchBook} shelfBooks={shelfBooks}
+          />
         })}
       </div>
       <div className="btn--container">

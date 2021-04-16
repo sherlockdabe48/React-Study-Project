@@ -8,6 +8,8 @@ export default function SearchPage({
   loading,
   startIndex,
   totalSearchItems,
+  shelfBooks
+
 }) {
   const { handleClearSearchInputValue } = useContext(searchBookContext)
 
@@ -31,6 +33,8 @@ export default function SearchPage({
             searchBooks={searchBooks}
             startIndex={startIndex}
             totalSearchItems={totalSearchItems}
+            shelfBooks={shelfBooks}
+
           />
 
           {totalSearchItems > 20 && (

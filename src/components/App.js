@@ -122,6 +122,7 @@ function App() {
     handleClearSearchInputValue,
     handleNextPageInSearchBook,
     handlePrevPageInSearchBook,
+    handleMoveToShelfFromSearch,
   }
 
   const bookBagContextValue = {
@@ -158,6 +159,14 @@ function App() {
     setSelectedBookId(id)
   }
 
+  function handleMoveToShelfFromSearch(id) {
+    const bookFromSearch = searchBooks.find(
+      (searchBook) => searchBook.id === id
+    )
+    setSelectedBookId(bookFromSearch.id)
+    setShelfBooks([...shelfBooks, bookFromSearch])
+  }
+
   function handleMoveToShelfFromBag(id) {
     const bookFromBag = bagBooks.find((bagBook) => bagBook.id === id)
     setSelectedBookId(bookFromBag.id)
@@ -186,6 +195,7 @@ function App() {
             searchInputValue={searchInputValue}
             startIndex={startIndex}
             totalSearchItems={totalSearchItems}
+            shelfBooks={shelfBooks}
           />
         )}
         {/* </Route>

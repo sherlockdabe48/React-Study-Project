@@ -4,7 +4,8 @@
 }
 
 .book-image-in-shelf {
-    min-width: 150px;
+    width: 150px;
+    
     height: 224px;
     border-radius: 5px;
     transition: all 0.2s;
