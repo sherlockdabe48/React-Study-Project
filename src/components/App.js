@@ -219,76 +219,76 @@ function App() {
   )
 }
 
-const sampleBagBooks = [
-  {
-    id: 1,
-    title: "Benjamin Flanklin",
-    author: "Walter Isaacson",
-    allPages: 602,
-    currentPage: 364,
-    imageURL: "../images/benfranklin.jpg",
-    status: "onRead",
-  },
-  {
-    id: 2,
-    title: "The Hobbit",
-    author: "Jrr. Tolkien",
-    allPages: 340,
-    currentPage: 201,
-    imageURL: "../images/hobbit.jpg",
-    status: "finish",
-  },
-]
+// const sampleBagBooks = [
+//   {
+//     id: 1,
+//     title: "Benjamin Flanklin",
+//     author: "Walter Isaacson",
+//     allPages: 602,
+//     currentPage: 364,
+//     imageURL: "../images/benfranklin.jpg",
+//     status: "onRead",
+//   },
+//   {
+//     id: 2,
+//     title: "The Hobbit",
+//     author: "Jrr. Tolkien",
+//     allPages: 340,
+//     currentPage: 201,
+//     imageURL: "../images/hobbit.jpg",
+//     status: "finish",
+//   },
+// ]
 
-const sampleShelfBooks = [
-  {
-    id: 3,
-    title: "Steve Jobs",
-    author: "Walter Isaacson",
-    allPages: 588,
-    currentPage: 120,
-    imageURL: "../images/jobs.jpg",
-  },
-  {
-    id: 4,
-    title: "Harry Potter",
-    author: "J.K. Rowling",
-    allPages: 251,
-    currentPage: 1,
-    imageURL: "../images/harry1.jpg",
-  },
-  {
-    id: 5,
-    title: "Deep Work",
-    author: "Carl Mark",
-    allPages: 289,
-    currentPage: 17,
-    imageURL: "../images/deepwork.jpg",
-  },
-  {
-    id: 6,
-    title: "The Innovators",
-    author: "Walter Isaacson",
-    allPages: 400,
-    currentPage: 10,
-    imageURL: "../images/innovators.jpg",
-  },
-  {
-    id: 7,
-    title: "Elon Musk",
-    author: "Ashlee Wange",
-    allPages: 400,
-    currentPage: 10,
-    imageURL: "../images/elonmusk.jpg",
-  },
-  {
-    id: 8,
-    title: "Steve Noob",
-    author: "Steve Noob",
-    allPages: 400,
-    currentPage: 10,
-    imageURL: "../images/noob.jpg",
-  },
-]
+// const sampleShelfBooks = [
+//   {
+//     id: 3,
+//     title: "Steve Jobs",
+//     author: "Walter Isaacson",
+//     allPages: 588,
+//     currentPage: 120,
+//     imageURL: "../images/jobs.jpg",
+//   },
+//   {
+//     id: 4,
+//     title: "Harry Potter",
+//     author: "J.K. Rowling",
+//     allPages: 251,
+//     currentPage: 1,
+//     imageURL: "../images/harry1.jpg",
+//   },
+//   {
+//     id: 5,
+//     title: "Deep Work",
+//     author: "Carl Mark",
+//     allPages: 289,
+//     currentPage: 17,
+//     imageURL: "../images/deepwork.jpg",
+//   },
+//   {
+//     id: 6,
+//     title: "The Innovators",
+//     author: "Walter Isaacson",
+//     allPages: 400,
+//     currentPage: 10,
+//     imageURL: "../images/innovators.jpg",
+//   },
+//   {
+//     id: 7,
+//     title: "Elon Musk",
+//     author: "Ashlee Wange",
+//     allPages: 400,
+//     currentPage: 10,
+//     imageURL: "../images/elonmusk.jpg",
+//   },
+//   {
+//     id: 8,
+//     title: "Steve Noob",
+//     author: "Steve Noob",
+//     allPages: 400,
+//     currentPage: 10,
+//     imageURL: "../images/noob.jpg",
+//   },
+// ]
 
 export default App

@@ -15,10 +15,15 @@ export default function SearchBook(props) {
 
   const [isAlreadyAdded, setAlreadyAdded] = useState(false)
 
-  useEffect(() => {
-    const alreadyAddedBook = shelfBooks.find((shelfBook) => shelfBook.id === id)
-    if (alreadyAddedBook) setAlreadyAdded(true)
-  }, [isAlreadyAdded])
+  useEffect(
+    (id) => {
+      const alreadyAddedBook = shelfBooks.find(
+        (shelfBook) => shelfBook.id === id
+      )
+      if (alreadyAddedBook) setAlreadyAdded(true)
+    },
+    [isAlreadyAdded, shelfBooks]
+  )
 
   return (
     <>
