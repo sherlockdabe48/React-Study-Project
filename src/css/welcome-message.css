@@ -1,26 +1,34 @@
 .welcome-message__container {
+display: flex;
+flex-direction: column;
 text-align: center;
 color: #2f2f2f;
 justify-content: center;
 align-items: center;
 height: 500px;
-margin-top: 100px;
 }
 
 .welcome-message__topic {
-font-size: 1.75rem;
+font-size: 1.5rem;
+margin-top: -100px;
 }
 
-.welcome-message__tip{
-   
-    font-weight: normal;
-    width: 500px;
-    background-color: brown;
-}
 
 .welcome-message__tip-wrapper {
+    display: flex;
+    flex-direction: column;
+
     justify-content: center;
     text-align: center;
     align-items: center;
-
+    padding: 0;
 }
+
+.welcome-message__tip-list{
+ 
+    max-width: 400px;
+    text-align: start;
+    margin: 0;
+    padding-left: 20px;
+}
+

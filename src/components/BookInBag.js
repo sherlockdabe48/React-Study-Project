@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import { bookBagContext } from "./App"
 import { toggleClassContext } from "./App"
 
@@ -11,11 +11,48 @@ export default function BookInBag(props) {
     allPages,
     imageURL,
     toggleClass,
+    bagBook,
   } = props
   const { handleMoveToShelfFromBag } = useContext(bookBagContext)
   const { handleToggleClassHide } = useContext(toggleClassContext)
   const [textOnActionButton, setTextOnActionButton] = useState("Finish")
   const [buttonClass, setButtonClass] = useState("btn--primary")
+  const [progress, setProgress] = useState(currentPage)
+  const progressRef = useRef()
+
+  function handleChangeProgress(e) {
+    const max = parseInt(e.target.max)
+    if (parseInt(e.target.value) > max) {
+      e.target.value = max
+    }
+    setProgress(e.target.value)
+  }
+
+  function finishBook() {
+    bagBook.currentPage = allPages
+
+    if (parseInt(bagBook.currentPage) === allPages) {
+      alert("Congratulations! You just finished a book")
+      toggleFinishButton()
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    finishBook()
+  }
+
+  function toggleFinishButton() {
+    setTextOnActionButton((prevText) => {
+      setButtonClass((prevButtonClass) => {
+        return prevButtonClass === "btn--primary" ? "btn--add" : "btn--primary"
+      })
+      return prevText === "Finish" ? "Read Again" : "Finish"
+    })
+  }
+
+  useEffect(() => {}, [progress])
+
   return (
     <div className="book-in-bag__container">
       <img className="book-image-in-bag" src={imageURL} alt="book in bag" />
@@ -31,7 +68,7 @@ export default function BookInBag(props) {
         <label>Progress:</label>
         <div>
           <span>
-            {currentPage}/{allPages} Pages
+            {progress}/{allPages} Pages
           </span>
           <button
             className="btn btn--normal btn--small book-in-bag__edit-progress-button"
@@ -42,33 +79,34 @@ export default function BookInBag(props) {
         </div>
         <div className={toggleClass ? "" : "hide"}>
           <div className="book-in-bag__edit-progress-section">
-            <input
-              type="number"
-              placeholder={currentPage}
-              max={allPages}
-              className="book-in-bag__edit-progress-input"
-            />
-            <button
-              className="btn btn--small btn--add book-in-bag__save-progress-button"
-              onClick={handleToggleClassHide}
-            >
-              SAVE
-            </button>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="number"
+                placeholder={progress}
+                max={allPages}
+                ref={progressRef}
+                className="book-in-bag__edit-progress-input"
+                onInput={(e) => handleChangeProgress(e)}
+              />
+              <button
+                className="btn btn--small btn--add book-in-bag__save-progress-button"
+                type="submit"
+                onClick={handleToggleClassHide}
+              >
+                SAVE
+              </button>
+            </form>
           </div>
         </div>
 
         <button
           className={`btn btn--in-bag ${buttonClass}`}
-          onClick={() =>
-            setTextOnActionButton((prevText) => {
-              setButtonClass((prevButtonClass) => {
-                return prevButtonClass === "btn--primary"
-                  ? "btn--add"
-                  : "btn--primary"
-              })
-              return prevText === "Finish" ? "Read Again" : "Finish"
-            })
-          }
+          onClick={() => {
+            if (currentPage !== allPages) {
+              setProgress(allPages)
+              finishBook()
+            }
+          }}
         >
           {textOnActionButton}
         </button>

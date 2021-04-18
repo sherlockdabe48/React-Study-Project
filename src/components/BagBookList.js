@@ -8,7 +8,12 @@ export default function BagBookList({ bagBooks, toggleClass }) {
     <>
       {bagBooks.map((bagBook) => {
         return (
-          <BookInBag key={bagBook.id} {...bagBook} toggleClass={toggleClass} />
+          <BookInBag
+            key={bagBook.id}
+            {...bagBook}
+            bagBook={bagBook}
+            toggleClass={toggleClass}
+          />
         )
       })}
 

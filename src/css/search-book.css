@@ -20,3 +20,28 @@
 .search-book__pages {
     font-size: 0.8rem;
 }
+
+.search-book__btn-wrapper {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+@media (max-width:900px ) {
+    .search-book__desciption {
+        margin-top: 10px;
+    }
+
+    .search-book__title{
+        font-size: 20px;
+    }
+
+    .search-book__author{
+        font-size: 16px;
+    }
+
+    .search-book__btn-wrapper {
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}

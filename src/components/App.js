@@ -66,6 +66,7 @@ function App() {
 
   function handleGetSearchInputValue(inputValue) {
     setSearchInputValue(inputValue)
+    setStartIndex(0)
   }
 
   function handleClearSearchInputValue() {
@@ -80,6 +81,10 @@ function App() {
     console.log(bookData)
     handleGetSearchBooksData(bookData)
   }, [bookData])
+
+  useEffect(() => {
+    console.log("ahah")
+  }, [toggleClass])
 
   useEffect(() => {
     setLoading(true)

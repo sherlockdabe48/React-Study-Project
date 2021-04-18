@@ -13,6 +13,7 @@
     display: grid;
     grid-template-columns: repeat(1 ,auto);
     justify-content: center;
+  
 }
 
 .search-book__container {
@@ -25,6 +26,8 @@
     width: 213px;
     height: 325px;
     border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(33,33,33,.2); 
 }
 
 .search-book__book-detail-grid{
@@ -32,15 +35,13 @@
     grid-template-columns: repeat(1 auto);
     width: 100%;
     margin-left: 20px;
-
 }
 
 .search-book__button-container-grid {
     display: grid;
     grid-template-columns: repeat(2 ,auto);
     max-height: 100px;
-    
-    background-color: blue;
+  
 }
 
 .search-book-list__pagination-button {
@@ -48,6 +49,28 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
+@media (max-width:900px ) {
+    .search-book-list__grid {
+    display: flex;
+    flex-direction: column;
+  
+}
+
+.search-book__container {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    }
+
+    .search-book__book-image{
+        transform: scale(0.8);
+        
+    }
+}
+
+
 
 
 

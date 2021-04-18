@@ -7,12 +7,20 @@ export default function ShelfBagWrapper({
   shelfBooks,
   toggleClass,
   shelfHighLight,
-  inputRef
+  inputRef,
 }) {
   return (
     <div className="shelf-bag-wrapper">
-      <Bag bagBooks={bagBooks} toggleClass={toggleClass} />
-      <Shelf shelfBooks={shelfBooks} shelfHighLight={shelfHighLight} inputRef={inputRef}/>
+      {bagBooks.length > 0 && (
+        <Bag bagBooks={bagBooks} toggleClass={toggleClass} />
+      )}
+      {shelfBooks.length > 0 && (
+        <Shelf
+          shelfBooks={shelfBooks}
+          shelfHighLight={shelfHighLight}
+          inputRef={inputRef}
+        />
+      )}
     </div>
   )
 }
