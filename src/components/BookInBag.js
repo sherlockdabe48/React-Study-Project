@@ -39,7 +39,6 @@ export default function BookInBag(props) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    finishBook()
   }
 
   function toggleFinishButton() {
